@@ -8,7 +8,7 @@ module.exports = {
     client: "pg",
     connection: {
       host: "127.0.0.1",
-      database: "induction_database",
+      database: "induction_test_database",
       user: "",
       password: "",
     },

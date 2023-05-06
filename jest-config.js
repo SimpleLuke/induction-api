@@ -13,5 +13,5 @@ module.exports = {
   },
   setupFilesAfterEnv: ["jest-extended"],
   globalSetup: "./tests/global-setup.ts",
-  globalTeardown: "./tests/global-teardown.ts",
+  // globalTeardown: "./tests/global-teardown.ts",
 };

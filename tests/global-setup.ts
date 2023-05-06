@@ -1,6 +1,6 @@
 import Knex from "knex";
 
-const database = "induction_database";
+const database = "induction_test_database";
 
 // Create the database
 async function createTestDatabase() {

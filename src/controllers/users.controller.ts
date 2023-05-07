@@ -13,7 +13,7 @@ const UsersController = {
       }
       return response.status(200).send(user);
     } catch (error) {
-      return response.status(404).send({ message: error });
+      return response.status(400).send({ message: error });
     }
   },
 };

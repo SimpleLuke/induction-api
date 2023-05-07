@@ -2,7 +2,7 @@ import request from "supertest";
 import Knex from "knex";
 import { Model } from "objection";
 
-import { app } from "../../src/app";
+import { app } from "../../../src/app";
 
 describe("users", () => {
   let knex: any;
@@ -41,6 +41,11 @@ describe("users", () => {
 
       expect(user.id).toBe(id);
       expect(user.name).toBe("Tony");
+    });
+
+    it("should return 404 when user not found", async () => {
+      const response = await request(app).get(`/users/999`);
+      expect(response.statusCode).toBe(400);
     });
   });
 });

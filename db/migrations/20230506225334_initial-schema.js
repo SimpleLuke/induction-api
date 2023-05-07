@@ -9,6 +9,11 @@ exports.up = async function (knex) {
     table.string("email").notNullable().unique();
     table.date("joined").notNullable();
   });
+  await knex.schema.createTable("logins", function (table) {
+    table.increments("id").primary().unique();
+    table.string("email").notNullable().unique();
+    table.string("hash").notNullable();
+  });
 };
 
 /**
@@ -17,4 +22,5 @@ exports.up = async function (knex) {
  */
 exports.down = async function (knex) {
   await knex.schema.dropTable("users");
+  await knex.schema.dropTable("logins");
 };

@@ -53,6 +53,7 @@ describe("users", () => {
         .post("/users/register")
         .send({
           email: "marry@email.com",
+          password: "1234",
           name: "Marry",
           joined: new Date("2023-05-07"),
         });
@@ -64,6 +65,7 @@ describe("users", () => {
         .post("/users/register")
         .send({
           email: "marry@email.com",
+          password: "1234",
           name: "Marry",
           joined: new Date("2023-05-07"),
         });

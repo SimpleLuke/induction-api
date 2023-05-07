@@ -52,7 +52,7 @@ describe("users", () => {
       const response = await request(app)
         .post("/users/register")
         .send({
-          email: "marry@email.com",
+          email: "marry@gmail.com",
           password: "1234",
           name: "Marry",
           joined: new Date("2023-05-07"),
@@ -64,13 +64,42 @@ describe("users", () => {
       const response = await request(app)
         .post("/users/register")
         .send({
-          email: "marry@email.com",
+          email: "marry@gmail.com",
           password: "1234",
           name: "Marry",
           joined: new Date("2023-05-07"),
         });
       expect(response.statusCode).toBe(400);
       expect(response.body.message).toBe("Unable to register");
+    });
+  });
+
+  describe("POST /users/signin", () => {
+    it("should return user data with correct password", async () => {
+      const response = await request(app).post("/users/signin").send({
+        email: "marry@gmail.com",
+        password: "1234",
+      });
+      expect(response.statusCode).toBe(200);
+      expect(response.body.email).toBe("marry@gmail.com");
+    });
+
+    it("should return 400 when wrong email", async () => {
+      const response = await request(app).post("/users/signin").send({
+        email: "marry123@gmail.com",
+        password: "1234",
+      });
+      expect(response.statusCode).toBe(400);
+      expect(response.body.message).toBe("Wrong credential");
+    });
+
+    it("should return 400 when wrong credential", async () => {
+      const response = await request(app).post("/users/signin").send({
+        email: "marry@gmail.com",
+        password: "123456",
+      });
+      expect(response.statusCode).toBe(400);
+      expect(response.body.message).toBe("Wrong credential");
     });
   });
 });

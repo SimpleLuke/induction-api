@@ -39,6 +39,24 @@ const UsersController = {
       return response.status(400).send({ message: "Unable to register" });
     }
   },
+  SignIn: async (request: Request, response: Response) => {
+    try {
+      const { email, password } = request.body;
+      const login = await Login.query().findOne({ email: email });
+      if (!login) {
+        throw new Error("Wrong credential");
+      }
+      const isValid = bcrypt.compareSync(password, login.hash);
+      if (isValid) {
+        const user = await User.query().findOne({ email: email });
+        return response.status(200).send(user);
+      } else {
+        throw new Error("Wrong credential");
+      }
+    } catch (error) {
+      return response.status(400).send({ message: "Wrong credential" });
+    }
+  },
 };
 
 export default UsersController;

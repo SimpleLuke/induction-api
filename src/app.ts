@@ -1,5 +1,5 @@
 import express, { Application, Request, Response, NextFunction } from "express";
-import { User, UserShape } from "./models/user.model";
+import { User, UserShape } from "./models/users.model";
 import usersRouter from "./routes/users.route";
 
 export const app: Application = express();

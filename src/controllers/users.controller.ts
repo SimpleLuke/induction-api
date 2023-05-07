@@ -1,5 +1,5 @@
 import express, { Application, Request, Response, NextFunction } from "express";
-import { User, UserShape } from "../models/user.model";
+import { User, UserShape } from "../models/users.model";
 
 const UsersController = {
   GetUser: async (request: Request, response: Response, next: NextFunction) => {

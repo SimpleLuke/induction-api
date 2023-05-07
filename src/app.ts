@@ -1,5 +1,6 @@
 import express, { Application, Request, Response, NextFunction } from "express";
-import { User, UserShape } from "./model/user.model";
+import { User, UserShape } from "./models/user.model";
+import usersRouter from "./routes/users.route";
 
 export const app: Application = express();
 
@@ -17,20 +18,4 @@ app.get(
   }
 );
 
-app.get(
-  "/users/:id",
-  async (request: Request, response: Response, next: NextFunction) => {
-    try {
-      const { id } = request.params;
-
-      const user = await User.query().findById(id);
-
-      if (!user) {
-        throw new Error("User not found");
-      }
-      return response.status(200).send(user);
-    } catch (error) {
-      return response.status(404).send({ message: error });
-    }
-  }
-);
+app.use("/users", usersRouter);

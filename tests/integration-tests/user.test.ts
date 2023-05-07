@@ -34,7 +34,7 @@ describe("users", () => {
   });
 
   describe("GET /users/:id", () => {
-    it("should return a book", async () => {
+    it("should return a user", async () => {
       const id = seededUsers[0].id;
 
       const { body: user } = await request(app).get(`/users/${id}`).expect(200);

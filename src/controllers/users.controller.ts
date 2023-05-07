@@ -16,6 +16,19 @@ const UsersController = {
       return response.status(400).send({ message: error });
     }
   },
+  CreateUser: async (request: Request, response: Response) => {
+    try {
+      const { email, name } = request.body;
+      const new_user = await User.query().insert({
+        email: email,
+        name: name,
+        joined: new Date(),
+      });
+      return response.status(200).send({ message: "New user created" });
+    } catch (error) {
+      return response.status(400).send({ message: error });
+    }
+  },
 };
 
 export default UsersController;

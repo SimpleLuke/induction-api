@@ -23,9 +23,7 @@ describe("users", () => {
 
     // Seed anything
     seededUsers = await knex("users")
-      .insert([
-        { id: 2, name: "Tony", email: "tony@gmail.com", joined: new Date() },
-      ])
+      .insert([{ name: "Tony", email: "tony@gmail.com", joined: new Date() }])
       .returning("*");
   });
 
@@ -46,6 +44,19 @@ describe("users", () => {
     it("should return 404 when user not found", async () => {
       const response = await request(app).get(`/users/999`);
       expect(response.statusCode).toBe(400);
+    });
+  });
+
+  describe("POST /users/register", () => {
+    it("should create a new user", async () => {
+      const response = await request(app)
+        .post("/users/register")
+        .send({
+          email: "marry@email.com",
+          name: "Marry",
+          joined: new Date("2023-05-07"),
+        });
+      expect(response.statusCode).toBe(200);
     });
   });
 });

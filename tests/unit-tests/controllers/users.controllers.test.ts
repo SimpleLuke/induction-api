@@ -68,6 +68,7 @@ describe("users", () => {
           joined: new Date("2023-05-07"),
         });
       expect(response.statusCode).toBe(400);
+      expect(response.body.message).toBe("Unable to register");
     });
   });
 });

@@ -41,7 +41,7 @@ describe("users", () => {
       expect(user.name).toBe("Tony");
     });
 
-    it("should return 404 when user not found", async () => {
+    it("should return 400 when user not found", async () => {
       const response = await request(app).get(`/users/999`);
       expect(response.statusCode).toBe(400);
     });
@@ -57,6 +57,17 @@ describe("users", () => {
           joined: new Date("2023-05-07"),
         });
       expect(response.statusCode).toBe(200);
+    });
+
+    it("should return 400 when register failed", async () => {
+      const response = await request(app)
+        .post("/users/register")
+        .send({
+          email: "marry@email.com",
+          name: "Marry",
+          joined: new Date("2023-05-07"),
+        });
+      expect(response.statusCode).toBe(400);
     });
   });
 });

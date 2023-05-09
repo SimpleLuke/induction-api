@@ -23,6 +23,32 @@ const ChaptersController = {
       return response.status(400).send({ message: error });
     }
   },
+  CompletedChapter: async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const { id, chapter_name } = request.body;
+
+      const user = await User.query().findById(id);
+
+      if (!user) {
+        throw new Error("User not found");
+      }
+      const record = user.completed;
+      if (record.includes(chapter_name)) {
+        throw new Error("Chapter is already completed");
+      }
+      const newRecord = [...record, chapter_name];
+      await User.query().findById(id).patch({
+        completed: newRecord,
+      });
+      return response.status(200).send({ completed: newRecord });
+    } catch (error) {
+      return response.status(400).send({ message: (error as Error).message });
+    }
+  },
 };
 
 export default ChaptersController;

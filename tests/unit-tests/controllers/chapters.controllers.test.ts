@@ -40,4 +40,48 @@ describe("chapters", () => {
       expect(response.statusCode).toBe(400);
     });
   });
+
+  describe("PATCH /chapters/completed", () => {
+    it("should update completed chapters", async () => {
+      await request(app)
+        .patch(`/chapters/completed`)
+        .send({
+          id: 1,
+          chapter_name: "New Chapter",
+        })
+        .expect(200);
+      const { body: response } = await request(app)
+        .get(`/chapters/completed/1`)
+        .expect(200);
+      expect(response.completed).toEqual([
+        "HL 5 Key Values",
+        "The HL Way",
+        "New Chapter",
+      ]);
+    });
+
+    it("should return 400 when chapter is already completed", async () => {
+      const response = await request(app)
+        .patch(`/chapters/completed`)
+        .send({
+          id: 1,
+          chapter_name: "HL 5 Key Values",
+        })
+        .expect(400);
+      expect(response.statusCode).toBe(400);
+      expect(response.body.message).toBe("Chapter is already completed");
+    });
+
+    it("should return 400 when user not found", async () => {
+      const response = await request(app)
+        .patch(`/chapters/completed`)
+        .send({
+          id: 999,
+          chapter_name: "HL 5 Key Values",
+        })
+        .expect(400);
+      expect(response.statusCode).toBe(400);
+      expect(response.body.message).toBe("User not found");
+    });
+  });
 });

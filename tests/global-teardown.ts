@@ -14,9 +14,6 @@ const knex = Knex({
 
 module.exports = async () => {
   try {
-    await knex.raw(
-      "SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'induction_test_database' AND pid <> pg_backend_pid();"
-    );
     await knex.raw(`DROP DATABASE IF EXISTS ${database}`);
   } catch (error) {
     console.log(error);

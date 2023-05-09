@@ -11,7 +11,14 @@ const ChaptersController = {
     next: NextFunction
   ) => {
     try {
-      return response.status(200).send("OK");
+      const { id } = request.params;
+
+      const user = await User.query().findById(id);
+
+      if (!user) {
+        throw new Error("User not found");
+      }
+      return response.status(200).send({ completed: user.completed });
     } catch (error) {
       return response.status(400).send({ message: error });
     }

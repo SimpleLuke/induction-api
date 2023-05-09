@@ -15,6 +15,7 @@ describe("User model", () => {
       name: "John Doe",
       email: "johndoe@example.com",
       joined: new Date("2021-01-01"),
+      completed: ["HL 5 Key Values"],
     };
 
     const user = new User(userValues);

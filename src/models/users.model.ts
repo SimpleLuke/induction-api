@@ -5,6 +5,7 @@ export class User extends Model {
   name!: string;
   email!: string;
   joined: Date = new Date();
+  completed: Array<string> = [];
 
   static tableName = "users"; // database table name
   static idColumn = "id"; // id column name

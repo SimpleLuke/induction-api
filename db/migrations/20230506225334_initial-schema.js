@@ -8,6 +8,7 @@ exports.up = async function (knex) {
     table.string("name").notNullable();
     table.string("email").notNullable().unique();
     table.date("joined").notNullable();
+    table.specificType("completed", "text[]");
   });
   await knex.schema.createTable("logins", function (table) {
     table.increments("id").primary().unique();

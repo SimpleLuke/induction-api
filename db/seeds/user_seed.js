@@ -10,6 +10,7 @@ exports.seed = async function (knex) {
       name: "Jenny",
       email: "jenny@gmail.com",
       joined: new Date("2022-06-22"),
+      completed: ["HL 5 Key Values", "The HL Way"],
     },
   ]);
 };

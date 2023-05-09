@@ -23,7 +23,14 @@ describe("users", () => {
 
     // Seed anything
     seededUsers = await knex("users")
-      .insert([{ name: "Tony", email: "tony@gmail.com", joined: new Date() }])
+      .insert([
+        {
+          name: "Tony",
+          email: "tony@gmail.com",
+          joined: new Date(),
+          completed: [],
+        },
+      ])
       .returning("*");
   });
 

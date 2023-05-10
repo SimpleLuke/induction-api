@@ -84,4 +84,44 @@ describe("chapters", () => {
       expect(response.body.message).toBe("User not found");
     });
   });
+
+  describe("PATCH /chapters/undo-completed", () => {
+    it("should update completed chapters", async () => {
+      await request(app)
+        .patch(`/chapters/undo-completed`)
+        .send({
+          id: 1,
+          chapter_name: "New Chapter",
+        })
+        .expect(200);
+      const { body: response } = await request(app)
+        .get(`/chapters/completed/1`)
+        .expect(200);
+      expect(response.completed).toEqual(["HL 5 Key Values", "The HL Way"]);
+    });
+
+    it("should return 400 when chapter is not completed", async () => {
+      const response = await request(app)
+        .patch(`/chapters/undo-completed`)
+        .send({
+          id: 1,
+          chapter_name: "HL History",
+        })
+        .expect(400);
+      expect(response.statusCode).toBe(400);
+      expect(response.body.message).toBe("Chapter is not completed");
+    });
+
+    it("should return 400 when user not found", async () => {
+      const response = await request(app)
+        .patch(`/chapters/undo-completed`)
+        .send({
+          id: 999,
+          chapter_name: "HL 5 Key Values",
+        })
+        .expect(400);
+      expect(response.statusCode).toBe(400);
+      expect(response.body.message).toBe("User not found");
+    });
+  });
 });

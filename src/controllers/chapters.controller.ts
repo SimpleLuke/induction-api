@@ -11,9 +11,9 @@ const ChaptersController = {
     next: NextFunction
   ) => {
     try {
-      const { id } = request.params;
+      const { user_id } = request.params;
 
-      const user = await User.query().findById(id);
+      const user = await User.query().findById(user_id);
 
       if (!user) {
         throw new Error("User not found");
@@ -29,9 +29,9 @@ const ChaptersController = {
     next: NextFunction
   ) => {
     try {
-      const { id, chapter_name } = request.body;
+      const { user_id, chapter_name } = request.body;
 
-      const user = await User.query().findById(id);
+      const user = await User.query().findById(user_id);
 
       if (!user) {
         throw new Error("User not found");
@@ -41,7 +41,7 @@ const ChaptersController = {
         throw new Error("Chapter is already completed");
       }
       const newRecord = [...record, chapter_name];
-      await User.query().findById(id).patch({
+      await User.query().findById(user_id).patch({
         completed: newRecord,
       });
       return response.status(200).send({ completed: newRecord });
@@ -55,9 +55,9 @@ const ChaptersController = {
     next: NextFunction
   ) => {
     try {
-      const { id, chapter_name } = request.body;
+      const { user_id, chapter_name } = request.body;
 
-      const user = await User.query().findById(id);
+      const user = await User.query().findById(user_id);
 
       if (!user) {
         throw new Error("User not found");
@@ -67,7 +67,7 @@ const ChaptersController = {
         throw new Error("Chapter is not completed");
       }
       const newRecord = record.filter((chapter) => chapter !== chapter_name);
-      await User.query().findById(id).patch({
+      await User.query().findById(user_id).patch({
         completed: newRecord,
       });
       return response.status(200).send({ completed: newRecord });

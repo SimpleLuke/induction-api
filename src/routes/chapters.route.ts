@@ -3,7 +3,7 @@ import ChaptersController from "../controllers/chapters.controller";
 
 const chaptersRouter = express.Router();
 
-chaptersRouter.get("/completed/:id", ChaptersController.GetCompleted);
+chaptersRouter.get("/completed/:user_id", ChaptersController.GetCompleted);
 chaptersRouter.patch("/completed", ChaptersController.CompletedChapter);
 chaptersRouter.patch(
   "/undo-completed",

@@ -46,7 +46,7 @@ describe("chapters", () => {
       await request(app)
         .patch(`/chapters/completed`)
         .send({
-          id: 1,
+          user_id: 1,
           chapter_name: "New Chapter",
         })
         .expect(200);
@@ -64,7 +64,7 @@ describe("chapters", () => {
       const response = await request(app)
         .patch(`/chapters/completed`)
         .send({
-          id: 1,
+          user_id: 1,
           chapter_name: "HL 5 Key Values",
         })
         .expect(400);
@@ -76,7 +76,7 @@ describe("chapters", () => {
       const response = await request(app)
         .patch(`/chapters/completed`)
         .send({
-          id: 999,
+          user_id: 999,
           chapter_name: "HL 5 Key Values",
         })
         .expect(400);
@@ -90,7 +90,7 @@ describe("chapters", () => {
       await request(app)
         .patch(`/chapters/undo-completed`)
         .send({
-          id: 1,
+          user_id: 1,
           chapter_name: "New Chapter",
         })
         .expect(200);
@@ -104,7 +104,7 @@ describe("chapters", () => {
       const response = await request(app)
         .patch(`/chapters/undo-completed`)
         .send({
-          id: 1,
+          user_id: 1,
           chapter_name: "HL History",
         })
         .expect(400);
@@ -116,7 +116,7 @@ describe("chapters", () => {
       const response = await request(app)
         .patch(`/chapters/undo-completed`)
         .send({
-          id: 999,
+          user_id: 999,
           chapter_name: "HL 5 Key Values",
         })
         .expect(400);

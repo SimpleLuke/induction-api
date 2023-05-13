@@ -1,4 +1,4 @@
-import { User, UserShape } from "../../../src/models/users.model";
+import { User, UserShape } from "../../src/models/users.model";
 
 describe("User model", () => {
   it("should create a new user instance", () => {

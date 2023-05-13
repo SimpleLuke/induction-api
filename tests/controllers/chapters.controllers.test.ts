@@ -2,7 +2,7 @@ import request from "supertest";
 import Knex from "knex";
 import { Model } from "objection";
 
-import { app } from "../../../src/app";
+import { app } from "../../src/app";
 
 describe("chapters", () => {
   let knex: any;

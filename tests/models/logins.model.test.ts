@@ -1,4 +1,4 @@
-import { Login, LoginShape } from "../../../src/models/logins.model";
+import { Login, LoginShape } from "../../src/models/logins.model";
 
 describe("Login model", () => {
   it("should create a new login instance", () => {

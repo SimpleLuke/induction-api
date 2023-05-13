@@ -39,7 +39,7 @@
 
 Induction API is a self-motivated backend project for Hargreaves Lansdown interview.
 
-The API is built with Node.js with TypeScript and served as a REST API for mobile client.
+The API is built with Node.js with TypeScript and served as a REST API for mobile client. (Check the iOS App [Here](https://github.com/SimpleLuke/InductionApp-Swift))
 
 The features include user registration, user login, completing and undo an induction chapter about Hargreaves Lansdown.
 

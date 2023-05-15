@@ -43,6 +43,8 @@ The API is built with Node.js with TypeScript and served as a REST API for mobil
 
 The features include user registration, user login, completing and undo an induction chapter about Hargreaves Lansdown.
 
+You can watch the [Demo Video](https://drive.google.com/file/d/1s89y0Fxo_lm4oH-bNl4qho52NUcOaSim/view?usp=share_link) here.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
